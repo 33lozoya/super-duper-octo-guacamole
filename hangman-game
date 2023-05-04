@@ -1,0 +1,90 @@
+# import random to use with the list of words
+        import random
+
+#display the second game user is playing
+        print("____________________________________________________\n")
+        print("|               Welcome to 'Hangman'                |")
+        print("____________________________________________________")
+        print("\n")
+        
+# a string list with all the words that will be used in the game
+        hangman_words = ['baubles' , 'guards' , 'boneshaker' , 'drudges' , 
+                         'medicide' , 'full-bottom' , 'coagulase' , 'simmer' , 
+                         'bunnia' , 'tremie' , 'muttonheads' , 'roughneck' , 
+                         'creds' , 'timber-line' , 'emberiza' , 'dominionism' , 
+                         'sunsets' , 'cucujo' , 'earthbank' , 'streaks' , 
+                         'extravagate' , 'conjuncture' , 'elongator' , 'ology' , 
+                         'cutworms' , 'refusion' , 'levitator' , 'unbowel' , 
+                         'keenness' , 'droschka' , 'darnels' , 'flammables' , 
+                         'wildtype' , 'gypsy' , 'retrainee' , 'piaga' , 
+                         'giddy-head' , 'rastafarianism' , 'selenology' , 'hymenoptera' , 
+                         'wrist-drop' , 'triggermen' , 'multilingualism' , 'cloaths' , 
+                         'hemophobia' , 'retrofit' , 'commandments' , 'unglue' , 
+                         'inshining' , 'nicholas' , 'hotfoot' , 'pubkeeper' , 
+                         'gas-tank' , 'uprun' , 'stabler' , 'doctrinaires' , 
+                         'akathisia' , 'ribcage' , 'neurophysicist' , 'unappropriate']
+
+#variables to run in the code which will be updated and displayed in the results
+        lives = 9
+        guessed_letters = []
+
+#this line will randomize the words list
+        correct_word = random.choice(hangman_words)
+
+
+# while loop which will run until the word is guessed or the player runs out of lives
+        while lives > 0:
+
+            out = ""
+            for letter in correct_word:
+                if letter in guessed_letters:
+                    out += letter
+                else:
+                    out += "_"
+            if out == correct_word:
+                break
+            print("The word is", out)
+
+#user inputs a letter in either caps or lowercase
+            guess = input("Enter guess (valid characters: alphabet letters and characters like',.-\_\|'): ").lower()
+
+#if the user input is an integer, an alert asks to enter a letter
+            if guess == int:
+                print("Make sure you enter an alphabet letter!")
+                print("\n")
+
+#this conditional statement is to remind the user that a letter has already 
+            elif guess in guessed_letters:
+                print("You have already guessed that letter. Give it another go!")
+                print("\n")
+
+#this conditional statement accepts the input and validates it positively, then the guess gets appended to the correctly guessed letters
+            elif guess in correct_word:
+                print("Correct guess, well done!")
+                guessed_letters.append(guess)
+                print("\n")
+
+#this code block accepts the user input and validates it negatively if the input is incorrect, then it subtracts the attempt to the lives variable. The wrong input and the number of lives prints out
+            elif guess not in correct_word:
+                print("Wrong letter!")
+                guessed_letters.append(guess)
+                lives -= 1
+                print("Lives left: ", lives)
+                print("\n")
+
+#if a character that isn't recognized is entered, this message is printed
+            else:
+                print("Ummhh... try again")
+
+#this if and else statement prints out either the word was guessed within the 9 attempts or if the user ran out of attempts, in which case the word is revealed        
+        if lives:
+            print("You guessed ", correct_word)
+        else:
+            print("You didn't guess", correct_word)
+
+#this code block takes the user input to either stop the game or play again
+        restart2 = input("Do you want to play again? y/n: ").lower()
+        if restart2 == "y":
+            userChoice == 2
+        else:
+            break
